@@ -1,41 +1,4 @@
 <!DOCTYPE html>
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "myDB";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-// Create database
-$sql = "CREATE DATABASE myDB";
-if ($conn->query($sql) === TRUE) {
-    echo "Database created successfully";
-} else {
-    echo "Error creating database: " . $conn->error;
-}
-// sql to create table
-$sql = "CREATE TABLE MyGuests (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-firstname VARCHAR(30) NOT NULL,
-lastname VARCHAR(30) NOT NULL,
-email VARCHAR(50),
-reg_date TIMESTAMP
-)";
-
-if ($conn->query($sql) === TRUE) {
-    $mysqlStatus = "Table MyGuests created successfully";
-} else {
-    $mysqlStatus = "Error creating table: " . $conn->error;
-}
-
-$conn->close();
-?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -96,9 +59,57 @@ $conn->close();
 				</tbody>
 			</table>
 		</div>
-	</div>
-	<div class="container">
-		<kbd>MYSQL</kbd> <small><?php echo $mysqlStatus;?></small>
+				<div class="bs-example" data-example-id="simple-table">
+			<?php
+				$db_host = 'localhost';
+				$db_user = 'root';
+				$db_pwd = '';
+
+				$database = 'mydb';
+				$table = 'schedule';
+
+				if (!mysql_connect($db_host, $db_user, $db_pwd))
+					die("Can't connect to database");
+
+				if (!mysql_select_db($database))
+					die("Can't select database");
+
+				// sending query
+				$result = mysql_query("SELECT * FROM {$table}");
+				if (!$result) {
+					die("Query to show fields from table failed");
+				}
+
+				$fields_num = mysql_num_fields($result);
+
+				echo "<caption>Current room DB data for {$table} table</caption>";
+				echo "<table class=\"table\"><thead><tr>";
+				// printing table headers
+				for($i=0; $i<$fields_num; $i++)
+				{
+					$field = mysql_fetch_field($result);
+					echo "<th>{$field->name}</th>";
+				}
+				echo "</thead><tbody></tr>\n";
+				// printing table rows
+				while($row = mysql_fetch_row($result))
+				{
+					echo "<tr>";
+
+					// $row is array... foreach( .. ) puts every element
+					// of $row to $cell variable
+					foreach($row as $cell)
+						echo "<td>$cell</td>";
+
+					echo "</tr>\n";
+				}
+				echo "</tbody>";
+				mysql_free_result($result);
+				?>
+		</div>
+		</div>
+
+
 	</div>
   </div>
 
