@@ -32,34 +32,9 @@
 		  </div>
 		  <button type="submit" class="btn btn-default">Submit</button>
 		</form>
+
+		
 		<div class="bs-example" data-example-id="simple-table">
-			<table class="table">
-				<caption>Current room setup.</caption>	
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Room</th>
-						<th>Event</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Grand Ball Room</td>
-						<td>Key Note</td>
-						<td>CEO to give conference keynote speech.</td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>					
-						<td>Dolphin</td>
-						<td>Breakfast/Check-in</td>
-						<td>Conference check-in and free breakfast for attendees</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-				<div class="bs-example" data-example-id="simple-table">
 			<?php
 				$db_host = 'localhost';
 				$db_user = 'root';
