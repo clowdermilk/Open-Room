@@ -1,3 +1,6 @@
+<!-- Generic Table Data
+INSERT INTO `mydb`.`schedule` (`Room`, `Event`, `Date`) VALUES ('Green', 'Movie', '2015-08-14'), ('Red', 'Dinner', '2015-08-14'), ('Blue', 'Breakfast', '2015-08-15');-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
